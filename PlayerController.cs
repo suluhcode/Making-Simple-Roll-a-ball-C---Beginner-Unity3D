@@ -13,14 +13,16 @@ public class PlayerController : MonoBehaviour {
 		winText.text = "";
 	}
 
-	void FixedUpdate() {
+	void FixedUpdate() {\
+		//define the direction ball move
 		float moveHorizontal = Input.GetAxis ("Horizontal");
 		float moveVertical = Input.GetAxis ("Vertical");
-
-		Vector3 movement = new Vector3 (moveHorizontal,0.0f,moveVertical);//create new vector for movement, no y axis
-
+		//create new vector for movement, no y axis
+		Vector3 movement = new Vector3 (moveHorizontal,0.0f,moveVertical);
+		//use rigidbody for speeding the ball
 		rigidbody.AddForce (movement * speed * Time.deltaTime); movement ball with rigidbody
 	}	
+	//use function method OnTriggerEnter for trigger the collected box
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.tag == "PickUp") {// set unactive when collider
 			other.gameObject.SetActive(false);// disable collected object
